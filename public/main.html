@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="javascripts/script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <style>
+    body {
+      background-image: url('images/flight2.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+  </style>
+</head>
+
+<!-- comment -->
+<!-- background="images/flight2.jpg" style="background-image: padding;" -->
+
+<body background="" ng-app="flightApp">
+  <div class="search-header">
+    <h1 style="color: white;">FLIGHT</h1><br>
+  </div>
+
+  <div class="container" ng-controller="searchCtrl">
+
+    <form name="Form" onsubmit="">
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="fromCity">Flying From</label><br> <br>
+          <input class="form-control" name="fromCity" id="fromCity" placeholder="From City" ng-model="fromCity"
+            ng-change="change(fromCity,'departing')">
+        </div>
+        <div class="col-sm-4">
+          <label for="toCity">Flying to</label><br><br>
+          <input type="text" class="form-control" name="toCity" id="toCity" placeholder="To City" ng-model="toCity"
+            ng-change="change(toCity,'returning')">
+        </div>
+        <div class="radio col-sm-4 order-1">
+          <label><input type="radio" name="directionOptRadio" value="ONE_WAY">One Way</label>
+          <br>
+          <label><input type="radio" name="directionOptRadio" value="ROUND_TRIPS" checked>Round Trip</label>
+        </div>
+      </div><br>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="departing">Departing</label><br>
+          <select class="form-control" id="departing" name="departing" ng-model="departing.select">
+            <!-- <option selected>--choose departing--</option> -->
+            <option ng-repeat="list in departing" value="{{list.idPlace}}">{{list.name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label for="returning">Returning</label><br>
+          <select class="form-control" id="returning"name="returning" ng-model="returning.select">
+              <option ng-repeat="list in returning" value="{{list.idPlace}}">{{list.name}}</option>
+            </select>
+        </div>
+      </div><br>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="adults">Adult(s)</label><br>
+          <select class="form-control" name="adults" id="adults"ng-model="adults">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="col-sm-4">
+          <label for="cabin">Cabin</label><br>
+          <select class="form-control" name="cabin" id="cabin"ng-model="cabin">
+            <option value="Economy">Economy Class</option>
+            <option value="Business">Business Class</option>
+            <option value="First">First Class</option>
+          </select>
+        </div>
+
+      </div><br>
+      <button class="btn btn-default" style="color:white; background-color: magenta;" id="searchButton"
+        ng-click="submit(departing,returning,adults,cabin)"> Search</button>
+    </form>
+  </div>
+
+  <script src="js/flight.js"></script>
+</body>
+
+</html>
